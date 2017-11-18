@@ -1,39 +1,31 @@
 package es.ucm.fdi.tp.pr1.logica;
 
-public class Celula {
-	public static final int MAX_PASOS_SIN_MOVER = 1;
-	public static final int PASOS_REPRODUCCION = 2;
-	private int numPasos;
-	private int numReproduccion;
-	private boolean movimiento;
 
-	public Celula() {
-		numPasos = MAX_PASOS_SIN_MOVER;
-		numReproduccion = PASOS_REPRODUCCION;
-		movimiento = true;
-	}
+public abstract class Celula {
+	
+	/**
+	 * ATRIBUTO
+	 */
+	protected boolean esComestible;
+	
+	/**
+	 * METODOS
+	 */
+	
+	/**
+	 * Metodo abstracto que se utiliza en todas las clase hija
+	 * @param f Se le pasa una fila	
+	 * @param c se la pasa una columna
+	 * @param superficie Se le pasa una Superficie
+	 * @return Devuelve una casilla
+	 */
+	public abstract Casilla ejecutaMovimiento(int f, int c, Superficie superficie);
+	
+	/**
+	 * Se utiliza para saber que tipo de celula es(Simple o Compleja)
+	 * @return Devuelve true si es simple y false si es compleja
+	 */
+	public abstract boolean esComestible();
 
-	public int getnumPasos() {
-		return numPasos;
-	}
 
-	public void setnumPasos(int numPasos) {
-		this.numPasos = numPasos;
-	}
-
-	public int getnumReproduccion() {
-		return numReproduccion;
-	}
-
-	public void setnumReproduccion(int numReproduccion) {
-		this.numReproduccion = numReproduccion;
-	}
-	public boolean getMovimiento(){
-		return movimiento;
-		
-	}
-	public boolean setMovimiento(boolean cambio){
-		this.movimiento = cambio;
-		return movimiento;
-	}	
 }
