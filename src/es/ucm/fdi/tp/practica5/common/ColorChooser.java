@@ -1,0 +1,126 @@
+package es.ucm.fdi.tp.practica5.common;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+@SuppressWarnings("serial")
+public class ColorChooser extends JDialog {
+	/**
+	 * ATRIBUTOS
+	 */
+	JColorChooser colorChooser;
+	Color color;
+	
+	/**
+	 *Metodo para crear el panel de eleccion de color
+	 * @param parent recive un frame
+	 * @param title un titulo del panel
+	 * @param initColor un color inicial
+	 */
+	public ColorChooser(JFrame parent, String title, Color initColor) {
+		
+		super(parent, title);
+	
+		setModalityType(DEFAULT_MODALITY_TYPE);
+		
+			colorChooser = new JColorChooser(initColor == null ? Color.WHITE : initColor);
+
+		getContentPane().add(colorChooser);
+
+			// Create a button
+			
+			JPanel buttonPane = new JPanel();
+			
+				JButton buttonOK = new JButton("OK");
+				
+				buttonOK.addActionListener(new ActionListener() {
+		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						color = colorChooser.getColor();
+						
+						closeDialog();	
+					}					
+				});
+				
+			buttonPane.add(buttonOK);
+	
+				JButton buttonCancel = new JButton("Cancel");
+				
+				buttonCancel.addActionListener(new ActionListener() {
+		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						closeDialog();
+					}
+				});
+			
+			buttonPane.add(buttonCancel);
+
+		// set action listener on the button
+		
+		getContentPane().add(buttonPane, BorderLayout.PAGE_END);
+		
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		pack();
+		setVisible(true);
+
+	}
+
+	/**
+	 * Cierra la ventana de elección de color.
+	 */
+	private void closeDialog() {
+		setVisible(false);
+		dispose();
+	}
+
+	
+	/**
+	 * Metodo que sobrescribe createRootPane para crear el rootPane ademas de que cierra la ventana
+	 * cuando se presiona ESCAPE
+	 */
+	public JRootPane createRootPane() {
+		
+		JRootPane rootPane = new JRootPane();
+		
+				KeyStroke stroke = KeyStroke.getKeyStroke("ESCAPE");
+		
+				Action action = new AbstractAction() {
+					
+					public void actionPerformed(ActionEvent e) {
+						closeDialog();
+					}
+					
+				};
+			
+			InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+			inputMap.put(stroke, "ESCAPE");
+		
+		rootPane.getActionMap().put("ESCAPE", action);
+		
+		return rootPane;
+		
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+}
