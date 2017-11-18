@@ -1,13 +1,12 @@
 package es.ucm.fdi.tp.pr2.comandos;
 
-import es.ucm.fdi.tp.pr1.logica.Mundo;
+import es.ucm.fdi.tp.pr1.control.Controlador;
 
-public class Vaciar implements Comando {
+public class Vaciar extends Comando {
 
 	@Override
-	public void ejecuta(Mundo mundo) {
-		mundo.vaciar();
-
+	public void ejecuta(Controlador controlador) {
+		controlador.vaciar();
 	}
 
 	@Override

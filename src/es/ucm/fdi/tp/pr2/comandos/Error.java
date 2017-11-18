@@ -1,12 +1,12 @@
 package es.ucm.fdi.tp.pr2.comandos;
 
-import es.ucm.fdi.tp.pr1.logica.Mundo;
+import es.ucm.fdi.tp.pr1.control.Controlador;
 
-public class Error implements Comando{
+public class Error extends Comando{
 
 	@Override
-	public void ejecuta(Mundo mundo) {
-		mundo.error();	
+	public void ejecuta(Controlador controlador) {
+		controlador.error();	
 	}
 
 	@Override

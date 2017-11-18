@@ -1,4 +1,7 @@
 package es.ucm.fdi.tp.pr1.logica;
+
+import java.io.*;
+
 import es.ucm.fdi.tp.pr1.logica.Superficie;
 
 public class CelulaSimple extends Celula {
@@ -104,7 +107,7 @@ public class CelulaSimple extends Celula {
 				superficie.moverCelula(casilla.getFila(), casilla.getColumna(), f, c);//Mueve la celula de (f,c)				              
 				System.out.println("Movimiento de (" + f + ',' + c + " a " + casilla.getFila() + ',' + casilla.getColumna() + ')');
 				if (tocaReprod()) {                     															
-					superficie.crearCelulaSimple(f, c);                        
+					superficie.crearCelula(f, c, new CelulaSimple());                        
 					System.out.println("Nace nueva celula en (" + f + ',' + c + ") cuyo padre ha sido (" + casilla.getFila() + ',' + casilla.getColumna() + ')');
 				}
 				
@@ -131,4 +134,31 @@ public class CelulaSimple extends Celula {
 	public boolean esComestible() {
 		return this.esComestible;
 	}
+
+	public int getNumPasos() {
+		return numPasos;
+	}
+
+	public int getNumReproduccion() {
+		return numReproduccion;
+	}
+
+	@Override
+	public void cargar(String[] cmdArray) {
+		// TODO Auto-generated method stub
+		this.numPasos = Integer.parseInt(cmdArray[3]);
+		this.numReproduccion = Integer.parseInt(cmdArray[4]);	
+	}
+
+	@Override
+	public void guardar(FileWriter fichero) {
+		// TODO Auto-generated method stub
+		
+		try {
+			fichero.write("simple" + ' ' + numPasos + ' ' + numReproduccion + '\r' + '\n');
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}	
 }

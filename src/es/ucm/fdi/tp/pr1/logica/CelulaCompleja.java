@@ -1,5 +1,7 @@
 package es.ucm.fdi.tp.pr1.logica;
 
+import java.io.*;
+
 public class CelulaCompleja extends Celula {
 	/**
 	 * CONSTANTE
@@ -74,5 +76,24 @@ public class CelulaCompleja extends Celula {
 	 */
 	public boolean esComestible() {
 		return this.esComestible;
+	}
+
+	@Override
+	public void cargar(String[] cmdArray) {
+		// TODO Auto-generated method stub
+		this.numComidas = Integer.parseInt(cmdArray[3]);
+	}
+
+	@Override
+	public void guardar(FileWriter fichero) {
+		// TODO Auto-generated method stub
+		
+		try {
+			fichero.write("compleja" + ' ' + numComidas + '\r' + '\n');
+		} catch (IOException falloGuardar) {
+			// TODO Auto-generated catch block
+			falloGuardar.printStackTrace();
+		}	
+		
 	}
 }

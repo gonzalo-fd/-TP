@@ -1,12 +1,12 @@
 package es.ucm.fdi.tp.pr2.comandos;
 
-import es.ucm.fdi.tp.pr1.logica.Mundo;
+import es.ucm.fdi.tp.pr1.control.Controlador;
 
-public class Salir implements Comando {
+public class Salir extends Comando {
 
 	@Override
-	public void ejecuta(Mundo mundo) {
-		mundo.setSimulacionTerminada(false);
+	public void ejecuta(Controlador controlador) {
+		controlador.setSimulacionTerminada(true);
 		System.out.println("Hasta luego.");
 	}
 

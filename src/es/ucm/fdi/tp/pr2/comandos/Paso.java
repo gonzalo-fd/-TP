@@ -1,12 +1,12 @@
 package es.ucm.fdi.tp.pr2.comandos;
 
-import es.ucm.fdi.tp.pr1.logica.Mundo;
+import es.ucm.fdi.tp.pr1.control.Controlador;
 
-public class Paso implements Comando {
+public class Paso extends Comando {
 
 	@Override
-	public void ejecuta(Mundo mundo) {
-		mundo.evoluciona();
+	public void ejecuta(Controlador controlador) {
+		controlador.daUnPaso();
 	}
 
 	@Override

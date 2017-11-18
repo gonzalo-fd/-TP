@@ -1,12 +1,13 @@
 package es.ucm.fdi.tp.pr2.comandos;
 
-import es.ucm.fdi.tp.pr1.logica.Mundo;
+import es.ucm.fdi.tp.pr1.control.Controlador;
+import es.ucm.fdi.tp.pr1.control.IndicesFueraDeRango;
 
-public class Iniciar implements Comando {
+public class Iniciar extends Comando {
 
 	@Override
-	public void ejecuta(Mundo mundo) {
-		mundo.iniciar();
+	public void ejecuta(Controlador controlador) throws IndicesFueraDeRango {
+		controlador.iniciar();
 		
 	}
 
